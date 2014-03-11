@@ -10,10 +10,10 @@ class Shape(metaclass=ABCMeta):
 
     @abstractmethod
     def area(self):
-        """Each shape must have an area function"""
+        """Each shape must have an area function. Error if override not used!"""
         pass
 
     @abstractmethod
     def perimeter(self):
-        """Each shape must have a perimeter function"""
+        """Each shape must have a perimeter function. Error if override not used!"""
         pass

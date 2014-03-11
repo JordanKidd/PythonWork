@@ -2,7 +2,7 @@ __author__ = 'jordankidd'
 
 from Shape import Shape
 from math import pi as piconst
-#NOTE: must pull Shape CLASS from the Shape NAMESPACE!!
+#NOTE: must pull the CLASS from their NAMESPACE (file name)! "from NS imp CL"
 
 
 class Circle(Shape):
@@ -11,6 +11,7 @@ class Circle(Shape):
     radius = 0.0
 
     def __init__(self, r):
+        """r is radius"""
         self.radius = r
 
     def perimeter(self):

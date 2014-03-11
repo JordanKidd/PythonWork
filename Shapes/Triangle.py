@@ -1,7 +1,7 @@
 __author__ = 'jordankidd'
 
 from Shape import Shape
-#NOTE: must pull Shape CLASS from the Shape NAMESPACE!!
+#NOTE: must pull the CLASS from their NAMESPACE (file name)! "from NS imp CL"
 
 
 class Triangle(Shape):
@@ -13,6 +13,7 @@ class Triangle(Shape):
     sidec = 0.0
 
     def __init__(self, base, sideb, sidec, h):
+        """Base, side B, side C, then height"""
         self.base = base
         self.sideb = sideb
         self.sidec = sidec

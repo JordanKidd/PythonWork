@@ -1,7 +1,7 @@
 __author__ = 'jordankidd'
 
 from Shape import Shape
-#NOTE: must pull Shape CLASS from the Shape NAMESPACE!!
+#NOTE: must pull the CLASS from their NAMESPACE (file name)! "from NS imp CL"
 
 class Square(Shape):
     """Square shape"""
