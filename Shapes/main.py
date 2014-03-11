@@ -1,5 +1,6 @@
 __author__ = 'jordankidd'
 
+from pydoc import help
 from Square import Square
 from Triangle import Triangle
 from Circle import Circle
@@ -12,9 +13,10 @@ def main():
     print("Shapes and inheritance practice in Python (v3.3.4)")
 
     circ = Circle(2)
-    tri = Triangle(19, 13.2)
+    tri = Triangle(4, 5, 7, 5.7)
     sq = Square(11)
 
+    #To print out pydocs: print(help(circ))
     print("Circle area: " + str(circ.area()))
     print("Square area: " + str(sq.area()))
     print("Triangle area: " + str(tri.area()))
