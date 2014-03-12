@@ -1,7 +1,8 @@
 __author__ = 'jordankidd'
 
-from bs4 import BeautifulSoup as beau
+from bs4 import BeautifulSoup
 from urllib import request as req
+import time
 
 
 def main():
@@ -35,9 +36,10 @@ def mainmenu():
 def prog(url):
     """/r/programming function"""
     ok = False
+    start = time.time()
     try:
         data = req.urlopen(url)
-        soup = beau(data)
+        soup = BeautifulSoup(data)
         ok = True
     except:
         print("\nError on data retrieval.")
@@ -49,15 +51,18 @@ def prog(url):
                 print("\t" + links.text)
                 limiter += 1
             else:
+                end = time.time()
+                print("Request time: " + str(round((end - start), 4)) + " second(s).")
                 break
 
 
 def tech(url):
     """/r/technology function"""
     ok = False
+    start = time.time()
     try:
         data = req.urlopen(url)
-        soup = beau(data)
+        soup = BeautifulSoup(data)
         ok = True
     except:
         print("\nError on data retrieval.")
@@ -69,6 +74,8 @@ def tech(url):
                 print("\t" + links.text)
                 limiter += 1
             else:
+                end = time.time()
+                print("Request time: " + str(round((end - start), 4)) + " second(s).")
                 break
 
 
