@@ -6,7 +6,7 @@ import time
 
 
 def main():
-    print("Web Scraping 101!\n")
+    print("Web Scraping Personal Project:")
     again = ""
     while again != "n":
         mainmenu()
