@@ -8,9 +8,12 @@ import time
 def main():
     print("Web Scraping Personal Project:")
     again = ""
-    while again != "n":
+    while True:
         mainmenu()
         again = input("\nAgain? 'y' / 'n'\n>>> ")
+        if again == 'n':
+            print("Goodbye.")
+            break
 
 
 def mainmenu():
@@ -18,6 +21,7 @@ def mainmenu():
             "3" : "https://news.ycombinator.com/", "4" : "TODO"}
     resp = input("\nWebsites:\n1 = /r/programming\n2 = /r/technology\n3 = HackerNews\n>>> ")
     ok = False
+
     try:
         url = dict[resp]
         funcs = {
