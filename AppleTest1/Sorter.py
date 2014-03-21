@@ -7,76 +7,90 @@ import csv
 
 
 def main():
-    ''' Program to open a file, sort by price,
-        then print to stdout
+    ''' Program to open a file named 'data.csv',
+        sort by price column, then print to stdout.
+        REQUIRES PYTHON 3+ to run!
+        Author: Jordan Kidd
     '''
+
     try:
         curdir = os.getcwd()
         path = curdir + '/data.csv'
+        print('\nUsing data from: ' + path + '\n')
         file = open(path)
+        file.seek(0)
         reader = csv.reader(file)
+
+        #Column Headers:
+        headers = GetHeaders(reader)
+        #Records:
+        records = GetRecords(reader)
+
+        #Records (Original):rea
+        print('Unsorted:')
+        print(FormatHeading(headers))
+        for row in records:
+            print(FormatRecord(row))
+
+        #Records (Asc):
+        sorted = SortRecords(records)
+        print('\nAscending Price:')
+        print(FormatHeading(headers))
+        for row in sorted:
+            print(FormatRecord(row))
+
+        #Records (Desc):
+        sorted.reverse()
+        print('\nDescending Price:')
+        print(FormatHeading(headers))
+        for row in sorted:
+            print(FormatRecord(row))
+
     except (IOError, TypeError) as e:
-        print("Sorter.py error:\n" + str(e), file=sys.stderr)
-
-    #Headers:
-    headers = GetHeaders(reader)
-
-    #Records (Asc):
-    records = GetRecords(reader)
-    sorted = SortRecords(records)
-    print("Ascending Price:")
-    print(FormatHeading(headers))
-    for row in sorted:
-        print(FormatRecord(row))
-
-    #Records (Desc)
-    sorted.reverse()
-    print("\nDescending Price:")
-    print(FormatHeading(headers))
-    for row in sorted:
-        print(FormatRecord(row))
+        print('Sorter.py error:\n' + str(e), file = sys.stderr)
 
 
 def FormatHeading(heading):
     ''' Formats the column headers to match data records
-        Returns
+        Returns the formatted string
     '''
-    return "{:<12} {:<30} {:<13} {:>16}".format(heading[0], heading[1], heading[2], heading[3])
+    return '{:<12} {:<30} {:<13} {:>16}'.format(heading[0], heading[1], heading[2], heading[3])
 
 
 def FormatRecord(rec):
     ''' Formats the column headers to match data records
-        Returns
+        Param1:
+        Returns the formatted string
     '''
-    return "{:<12} {:<30} {:<13} {:>16}".format(rec[0], rec[1], rec[2], rec[3])
+    return '{:<12} {:<30} {:<13} {:>16}'.format(rec[0], rec[1], rec[2], rec[3])
 
 
 def GetHeaders(reader):
-    ''' Param 1, csv.reader object
+    ''' Should be called before GetRecords()
+        Param1: csv.reader object
         Returns the headings in a list
     '''
     return next(reader)
 
 
 def GetRecords(reader):
-    ''' Param 1, csv.reader object
+    ''' Should be called after GetHeaders()
+            (or first read should be skipped, because of headings)
+        Param 1: csv.reader object
         Returns a list containing all records
         from the csv file
     '''
     list = []
     rownum = 0
     for row in reader:
-        if rownum == 0:
-            pass #skip column headings
-        else:
-            list.append(row)
+        list.append(row)
         rownum += 1
     return list
 
 
 def SortRecords(records):
-    ''' Purpose: to sort the data by price
-        Param 1, records a list containing a list of strs
+    ''' Sorts the records object the data by price, records[3]
+        Param 1: records a list containing a list of strs
         Returns: a new sorted list
     '''
     final_length = len(records)
