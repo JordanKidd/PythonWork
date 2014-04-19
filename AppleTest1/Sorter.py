@@ -1,15 +1,13 @@
 __author__ = 'jordankidd'
 
-
 import os
 import sys
 import csv
 
-
 def main():
     ''' Program to open a file named 'data.csv',
         sort by price column, then print to stdout.
-        REQUIRES PYTHON 3+ to run!
+        REQUIRES PYTHON 3+ TO USE!
         Author: Jordan Kidd
     '''
 
@@ -18,7 +16,6 @@ def main():
         path = curdir + '/data.csv'
         print('\nUsing data from: ' + path + '\n')
         file = open(path)
-        file.seek(0)
         reader = csv.reader(file)
 
         #Column Headers:
@@ -49,21 +46,17 @@ def main():
     except (IOError, TypeError) as e:
         print('Sorter.py error:\n' + str(e), file = sys.stderr)
 
-
 def FormatHeading(heading):
     ''' Formats the column headers to match data records
         Returns the formatted string
     '''
     return '{:<12} {:<30} {:<13} {:>16}'.format(heading[0], heading[1], heading[2], heading[3])
 
-
 def FormatRecord(rec):
     ''' Formats the column headers to match data records
-        Param1:
         Returns the formatted string
     '''
     return '{:<12} {:<30} {:<13} {:>16}'.format(rec[0], rec[1], rec[2], rec[3])
-
 
 def GetHeaders(reader):
     ''' Should be called before GetRecords()
@@ -71,7 +64,6 @@ def GetHeaders(reader):
         Returns the headings in a list
     '''
     return next(reader)
-
 
 def GetRecords(reader):
     ''' Should be called after GetHeaders()
@@ -86,7 +78,6 @@ def GetRecords(reader):
         list.append(row)
         rownum += 1
     return list
-
 
 def SortRecords(records):
     ''' Sorts the records object the data by price, records[3]
@@ -108,7 +99,6 @@ def SortRecords(records):
         sorted.append(copy[x_to_add])
         copy.remove(copy[x_to_add])
     return sorted
-
 
 if __name__ == '__main__':
     main()
