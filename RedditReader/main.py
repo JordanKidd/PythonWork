@@ -10,7 +10,7 @@ def main():
         subr = input("\nPlease enter the subreddit name to view: ")
         url = "http://www.reddit.com/r/" + str(subr) + "/.json"
         error = False
-
+        
         try:
             jsonStr = request.urlopen(url).read().decode("utf-8")
         except:
