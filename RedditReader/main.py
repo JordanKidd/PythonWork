@@ -24,7 +24,8 @@ def main():
                 for i in range(1, 6):
                     post = posts[i]
                     title = post['data']['title']
-                    print("#" + str(i) + ": " + title)
+                    ups = post['data']['ups']
+                    print("#" + str(i) + ": " + title + ". UPS: " + str(ups))
                 more = input("Look up more? y / n\n")
                 if more == 'y':
                     again = True
