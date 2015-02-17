@@ -15,7 +15,7 @@ def main():
             jsonStr = request.urlopen(url).read().decode("utf-8")
         except:
             error = True
-            print("Error occured with data fetch. Is the subreddit spelled correctly?")
+            print("Error occurred with data fetch. Is the subreddit spelled correctly?")
 
         if error == False:
             jsonObs = json.loads(jsonStr)
