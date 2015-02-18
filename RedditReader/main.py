@@ -6,9 +6,9 @@ import json
 
 def main():
     again = True
-    while again == True:
+    while again is True:
         subr = input("\nPlease enter the subreddit name to view: ")
-        url = "http://www.reddit.com/r/" + str(subr) + "/.json"
+        url = "http://www.reddit.com/r/" + str(subr) + ".json"
         error = False
         
         try:
@@ -17,7 +17,7 @@ def main():
             error = True
             print("Error occurred with data fetch. Is the subreddit spelled correctly?")
 
-        if error == False:
+        if error is False:
             jsonObs = json.loads(jsonStr)
             posts = jsonObs['data']['children']
             if len(posts) > 5:
@@ -25,7 +25,7 @@ def main():
                     post = posts[i]
                     title = post['data']['title']
                     ups = post['data']['ups']
-                    print("#" + str(i) + ": " + title + ". UPS: " + str(ups))
+                    print("#" + str(i) + ": " + title + " \tUPS: " + str(ups))
                 more = input("Look up more? y / n\n")
                 if more == 'y':
                     again = True
