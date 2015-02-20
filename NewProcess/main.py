@@ -1,6 +1,7 @@
 __author__ = 'Jordan'
 
 import subprocess as sp
+from sys import executable
 import child
 from time import sleep
 
@@ -10,20 +11,52 @@ that handles a new task while the calling one waits.
 
 Also, showing a concurrent task as both are running together.
 """
+
 def main():
     print("Parent starting waiting example...")
     # pid = sp.Popen("python child.py")
     # pid.wait()
-    # OR ONE COULD USE:
-    pid = sp.call("python child.py")
+
+    # OR ONE COULD USE (executable says use THIS python program exec):
+
+    pid = sp.call([executable, "child.py"])
     print("Parent done waiting.")
 
     print("Parent starting concurrent example...")
-    pid = sp.Popen("python child.py")
+    pid = sp.Popen(["python", "child.py"])
     for x in range(10):
         print("Parent running:", x)
         sleep(.5)
-    print("Parent done.")
+    print("Parent done.\n")
+
+    sleep(1)
+
+    """
+    Now an example with using the multiprocessing module
+    """
+    from multiprocessing import Process
+
+
+    print("\nStarting example to pass information and use something in the same file...")
+    list_one = ["This", "is", "a", "passed", "list."]
+    p = Process(target=ChildFunction, args=list_one)
+    p.start() # runs process
+    p.join() # this makes the parent block until the child process terminates
+    print("Back in parent process and finished.")
+
+    sleep(1)
+
+    print("\nStarting example to pass information and use something in the same file...")
+    powers_of_2 = [2**x for x in range(0, 64)]
+    p = Process(target=ChildFunction, args=powers_of_2)
+    p.start() # runs process
+    print("This will print before the child's list_two.")
+
+
+def ChildFunction(*args):
+    print("In child and starting to print list...")
+    for x in args:
+        print(x)
 
 
 if __name__ == '__main__':
