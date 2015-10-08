@@ -16,3 +16,10 @@ debugproj/results.out
 user/jordankidd/GITHUB/Homework
 
 RedditReader/.swp
+NewProcess/build/*
+NewProcess/dist/*
+python_c/build/*
+RedditReader/build/*
+RedditReader/dist/*
+*.spec
+*.so
